@@ -9,6 +9,10 @@
     <name>project-1-e-bank-ms-app</name>
     <description>E-Bank Microservices Architecture - Partie 1</description>
 
+    <modules>
+        <module>customer-service</module>
+    </modules>
+
     <properties>
         <java.version>21</java.version>
     </properties>

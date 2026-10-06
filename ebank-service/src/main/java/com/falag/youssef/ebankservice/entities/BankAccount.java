@@ -1,7 +1,9 @@
 package com.falag.youssef.ebankservice.entities;
 
+import com.falag.youssef.ebankservice.model.Customer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.*;
 
 import java.util.Date;
@@ -15,4 +17,7 @@ public class BankAccount {
     private Date createdAt;
     private String type;
     private long customerId;
+
+    @Transient
+    private Customer customer;
 }

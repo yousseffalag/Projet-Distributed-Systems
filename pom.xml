@@ -10,6 +10,7 @@
     <description>E-Bank Microservices Architecture - Partie 1</description>
 
     <modules>
+        <module>discovery-service</module>
         <module>customer-service</module>
     </modules>
 

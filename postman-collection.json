@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "ebank-ms-part1-collection",
+		"name": "E-Bank Microservices (Partie 1)",
+		"description": "Tests des microservices Customer, EBank et Gateway - Falag Youssef",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer Service Direct",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8056/customers",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8056",
+							"path": ["customers"]
+						}
+					}
+				},
+				{
+					"name": "Get Customer By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8056/customers/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8056",
+							"path": ["customers", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Youssef Falag\",\n    \"email\": \"youssef.falag@example.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8056/customers",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8056",
+							"path": ["customers"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "EBank Service Direct",
+			"item": [
+				{
+					"name": "Get All Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8057/accounts",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8057",
+							"path": ["accounts"]
+						}
+					}
+				},
+				{
+					"name": "Get Account By Id (with Customer via Feign)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8057/accounts/{{accountId}}",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8057",
+							"path": ["accounts", "{{accountId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Via Spring Cloud Gateway (Port 9999)",
+			"item": [
+				{
+					"name": "Gateway - Get Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/CUSTOMER-SERVICE/customers",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "9999",
+							"path": ["CUSTOMER-SERVICE", "customers"]
+						}
+					}
+				},
+				{
+					"name": "Gateway - Get Customer 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/CUSTOMER-SERVICE/customers/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "9999",
+							"path": ["CUSTOMER-SERVICE", "customers", "1"]
+						}
+					}
+				},
+				{
+					"name": "Gateway - Get Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/EBANK-SERVICE/accounts",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "9999",
+							"path": ["EBANK-SERVICE", "accounts"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

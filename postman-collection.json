@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "ebank-ms-part1-collection",
-		"name": "E-Bank Microservices (Partie 1)",
-		"description": "Tests des microservices Customer, EBank et Gateway - Falag Youssef",
+		"_postman_id": "ebank-ms-part1-and-part2-collection",
+		"name": "E-Bank Microservices & AI Chatbot MCP",
+		"description": "Tests des microservices Customer, EBank, Gateway et AI Chatbot via MCP - Falag Youssef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -36,29 +36,6 @@
 							"path": ["customers", "1"]
 						}
 					}
-				},
-				{
-					"name": "Create Customer",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Youssef Falag\",\n    \"email\": \"youssef.falag@example.com\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8056/customers",
-							"protocol": "http",
-							"host": ["localhost"],
-							"port": "8056",
-							"path": ["customers"]
-						}
-					}
 				}
 			]
 		},
@@ -78,18 +55,52 @@
 							"path": ["accounts"]
 						}
 					}
-				},
+				}
+			]
+		},
+		{
+			"name": "AI Chatbot via MCP (Port 8058)",
+			"item": [
 				{
-					"name": "Get Account By Id (with Customer via Feign)",
+					"name": "Chatbot - Get Chat Query",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8057/accounts/{{accountId}}",
+							"raw": "http://localhost:8058/chat?question=Quels sont les clients enregistres ?",
 							"protocol": "http",
 							"host": ["localhost"],
-							"port": "8057",
-							"path": ["accounts", "{{accountId}}"]
+							"port": "8058",
+							"path": ["chat"],
+							"query": [
+								{
+									"key": "question",
+									"value": "Quels sont les clients enregistres ?"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Chatbot - POST Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"question\": \"Donne moi les informations du client id 1 et ses comptes bancaires.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8058/chat",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8058",
+							"path": ["chat"]
 						}
 					}
 				}
@@ -109,20 +120,6 @@
 							"host": ["localhost"],
 							"port": "9999",
 							"path": ["CUSTOMER-SERVICE", "customers"]
-						}
-					}
-				},
-				{
-					"name": "Gateway - Get Customer 1",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:9999/CUSTOMER-SERVICE/customers/1",
-							"protocol": "http",
-							"host": ["localhost"],
-							"port": "9999",
-							"path": ["CUSTOMER-SERVICE", "customers", "1"]
 						}
 					}
 				},

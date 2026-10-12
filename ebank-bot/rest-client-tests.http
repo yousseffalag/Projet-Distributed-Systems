@@ -1,0 +1,36 @@
+### ===============================================================
+### Tests du Chatbot IA E-Bank via Client REST (HTTP Client)
+### Développé par : Falag Youssef
+### ===============================================================
+
+@botUrl = http://localhost:8058
+
+### 1. Test GET /chat - Question générale
+GET {{botUrl}}/chat?question=Bonjour, quels sont vos services ?
+Accept: application/json
+
+### 2. Test GET /chat - Demande de la liste des clients (MCP Tool)
+GET {{botUrl}}/chat?question=Donne-moi la liste de tous les clients
+Accept: application/json
+
+### 3. Test GET /chat - Consultation d'un compte bancaire spécifique
+GET {{botUrl}}/chat?question=Quels sont les détails du compte de l'utilisateur avec l'id 1 ?
+Accept: application/json
+
+### 4. Test POST /chat - Requête au format JSON
+POST {{botUrl}}/chat
+Content-Type: application/json
+Accept: application/json
+
+{
+  "question": "Combien de comptes bancaires existent et donne moi leurs soldes ?"
+}
+
+### 5. Test POST /chat - Création / assistance d'un compte
+POST {{botUrl}}/chat
+Content-Type: application/json
+Accept: application/json
+
+{
+  "question": "Peux-tu vérifier si le client id 2 existe dans le système ?"
+}

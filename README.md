@@ -14,7 +14,7 @@ Développé par : **Falag Youssef** (`com.falag.youssef`)
 | **`customer-service`** | `8056` | Gestion des clients + Serveur MCP Tools |
 | **`ebank-service`** | `8057` | Gestion des comptes, OpenFeign, Circuit Breaker + Serveur MCP Tools |
 | **`gateway-service`** | `9999` | API Gateway avec routage dynamique |
-| **`ebank-bot`** | `8058` | Agent IA (Spring AI OpenAI) + Client MCP pour interagir avec les microservices |
+| **`ebank-bot`** | `8058` | Agent IA (Spring AI OpenAI), Client MCP et passerelle conversationnelle |
 
 ---
 
@@ -24,9 +24,6 @@ Un fichier template [`.env.example`](./.env.example) est fourni à la racine :
 ```properties
 OPENAI_API_KEY=sk-proj-your-openai-api-key-here
 ```
-Avant de démarrer `ebank-bot`, définissez votre clé d'API OpenAI dans votre environnement :
-- Sous PowerShell : `$env:OPENAI_API_KEY="votre_cle_openai"`
-- Ou dans un fichier `.env` chargé par votre IDE.
 
 ---
 
@@ -42,23 +39,9 @@ Avant de démarrer `ebank-bot`, définissez votre clé d'API OpenAI dans votre e
 
 ## 🧪 Documentation et Tests des APIs
 
-### 1. APIs Métier (Direct ou via Gateway Port 9999)
-- **Clients** : `GET http://localhost:9999/CUSTOMER-SERVICE/customers`
-- **Comptes** : `GET http://localhost:9999/EBANK-SERVICE/accounts`
+### 1. Tests avec Client REST (HTTP Client)
+Un fichier de requêtes exécutables [`ebank-bot/rest-client-tests.http`](./ebank-bot/rest-client-tests.http) est fourni pour tester directement les endpoints REST :
+- **GET /chat** : `GET http://localhost:8058/chat?question=Bonjour`
+- **POST /chat** : Envoi de questions complexes en JSON vers l'Agent IA.
 
-### 2. Chatbot IA via MCP Client (Port 8058)
-- **Requête GET** :
-  `GET http://localhost:8058/chat?question=Donne moi la liste des clients et leurs soldes`
-- **Requête POST** :
-  ```http
-  POST http://localhost:8058/chat
-  Content-Type: application/json
-
-  {
-      "question": "Trouve le client avec l'identifiant 1"
-  }
-  ```
-- **Swagger UI du Chatbot** : `http://localhost:8058/swagger-ui.html`
-
-### 3. Collection Postman
-Une collection complète de requêtes est fournie dans le fichier [`postman-collection.json`](./postman-collection.json).
+Une suite de tests d'intégration automatisés est également disponible dans `EbankChatbotControllerTest.java`.

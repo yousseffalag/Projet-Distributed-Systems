@@ -7,13 +7,14 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>project-1-e-bank-ms-app</name>
-    <description>E-Bank Microservices Architecture - Partie 1</description>
+    <description>E-Bank Microservices Architecture - Partie 1 & 2</description>
 
     <modules>
         <module>discovery-service</module>
         <module>customer-service</module>
         <module>ebank-service</module>
         <module>gateway-service</module>
+        <module>ebank-bot</module>
     </modules>
 
     <properties>
